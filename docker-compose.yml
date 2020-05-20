@@ -2,6 +2,12 @@ version: '3.7'
 
 
 services:
+
+  springcommunity:
+    image: springcommunity/spring-petclinic-rest
+    ports:
+     - "9966:9966" 
+  
   web:
     container_name: nginx
     build: .
@@ -10,13 +16,8 @@ services:
    
     depends_on:      
       - springcommunity
-
-
-
-
-  springcommunity:
-    image: springcommunity/spring-petclinic-rest
-    ports:
-     - "9966:9966"
+    links:
+      - springcommunity
+    restart: always
 
 
